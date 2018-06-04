@@ -24,8 +24,6 @@ static int		long_c(char *buf, va_list *ap, t_specif *spec)
 	int			len;
 	wchar_t		symb;
 	
-	if (spec->precision == 0)
-		return (1);
 	symb = va_arg(*ap, wchar_t);
 	if (symb <= 127)
 		len = 1;
@@ -55,7 +53,7 @@ static int		print_char(char *buf, int symbol, t_specif *spec)
 		add_spaces(buf, spec->width - 1);
 	return (1);
 }
-
+//there are no precision here. so why does output depend on precision? if it is or not
 static int		long_s(char *buf, va_list *ap, t_specif *spec)
 {
 	va_list		cp;
@@ -71,9 +69,6 @@ static int		long_s(char *buf, va_list *ap, t_specif *spec)
 	{
 		print_uni((int)*s, buf);
 		s++;
-		if (spec->conversion == 'C' || !(*s)
-			|| spec->conversion == 'c')
-			break ;
 	}
 	if (is_minus(spec->flags))
 		add_spaces(buf, spec->width - len);

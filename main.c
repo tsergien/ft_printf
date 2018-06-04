@@ -22,12 +22,11 @@ int main(int ac, char **av)
 	}
 	q[i++] = 'a';
 
-//ooops...fix this case
 	printf("original:_%3.C\n", (wchar_t)*q);
 	ft_printf("ft_print:_%3.C\n\n", (wchar_t)*q);
 
-	// ft_printf("ft_print:_%13S\n", (wchar_t *)q);
-	//    printf("original:_%13S\n", (wchar_t *)q);
+	 ft_printf("ft_print:_%10.S\n", (wchar_t *)q);
+	    printf("original:_%10.S\n", (wchar_t *)q);
 
 
 	free(q);
