@@ -10,7 +10,7 @@ int main(int ac, char **av)
 	ac++;
 	av++;
 	char *s;
-	s = ft_strdup("α Ձ Ɛ χ");
+	s = strdup("α Ձ Ɛ χ");
 
 	wchar_t *q;
 	q = (wchar_t *)malloc(sizeof(wchar_t) * 7);

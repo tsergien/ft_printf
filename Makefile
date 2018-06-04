@@ -32,7 +32,11 @@ SRC = 	ft_printf.c\
 		ft_itoa_signed.c\
 		ft_mask.c\
 
-LIB = libft.a
+LIB_SRC = ft_atoi.c ft_bzero.c ft_isdigit.c ft_strlen.c ft_num_len.c
+
+LIB_OBJ = $(LIB_SRC:.c=.o)
+
+LIB = $(addprefix $(LIB_DIR), $(LIB_OBJ))
 
 LIB_DIR = libft/
 
@@ -44,9 +48,8 @@ all: $(NAME)
 
 $(NAME):
 		@make -C $(LIB_DIR) -silent
-		@gcc $(FLAGS) -o $(NAME) $(SRC) -L $(LIB_DIR) -lft -I $(HEADER)
-		@cp $(LIB_DIR)$(LIB) ./$(NAME)
-		@ar -q -o $(NAME) $(OBJ) $(NAME)
+		@gcc $(FLAGS) -c $(SRC) -I$(HEADER)
+		@ar rc $(NAME) $(OBJ) $(LIB)
 		@echo "fortunate test compiled :)"
 
 %.o: %.c
