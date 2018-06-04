@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
+#include <stdio.h>
 /*
 ** ' ' undefined  **
 ** 0 undefined    **
@@ -60,6 +60,8 @@ static int		long_s(char *buf, va_list *ap, t_specif *spec)
 	int			len;
 	wchar_t		*s;
 	
+	if (spec->precision == 0)
+		return (1);
 	va_copy(cp, *ap);
 	len = wchar_len(va_arg(cp, wchar_t *));
 	s = va_arg(*ap, wchar_t *);
