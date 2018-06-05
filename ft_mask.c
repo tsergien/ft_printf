@@ -56,7 +56,7 @@ static void	get_mask(intmax_t val, int *mask)
 	}	
 }
 
-void	print_uni(intmax_t val, char *buf)
+void	print_uni(intmax_t val, t_buf *buf)
 {
 	char	tmp;
 	int		i;
@@ -93,7 +93,7 @@ int		wchar_len(wchar_t *s)
 	return (len);
 }
 
-void	add_spaces(char *buf, int n)
+void	add_spaces(t_buf *buf, int n)
 {
 	while (n-- > 0)
 		set_to_buf(buf, " ", 1);

@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	add_hash(char *buf, t_specif *spec)
+void	add_hash(t_buf *buf, t_specif *spec)
 {
 	if (is_hash(spec->flags) && spec->conversion == 'X')
 		set_to_buf(buf, "0X", 2);
@@ -36,7 +36,7 @@ int		get_base(char c)
 	return (base);
 }
 
-uintmax_t		printf_uint(char *buf, va_list *ap, t_specif *spec)
+uintmax_t		printf_uint(t_buf *buf, va_list *ap, t_specif *spec)
 {
 	size_t			len;
 	short int		base;

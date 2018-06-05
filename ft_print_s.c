@@ -19,7 +19,7 @@
 ** # undefined    **
 */
 
-static int		long_c(char *buf, va_list *ap, t_specif *spec)
+static int		long_c(t_buf *buf, va_list *ap, t_specif *spec)
 {
 	int			len;
 	wchar_t		symb;
@@ -41,7 +41,7 @@ static int		long_c(char *buf, va_list *ap, t_specif *spec)
 	return (1);
 }
 
-static int		print_char(char *buf, int symbol, t_specif *spec)
+static int		print_char(t_buf *buf, int symbol, t_specif *spec)
 {
 	char		char_symbol;
 
@@ -54,7 +54,7 @@ static int		print_char(char *buf, int symbol, t_specif *spec)
 	return (1);
 }
 //there are no precision here. so why does output depend on precision? if it is or not
-static int		long_s(char *buf, va_list *ap, t_specif *spec)
+static int		long_s(t_buf *buf, va_list *ap, t_specif *spec)
 {
 	va_list		cp;
 	int			len;
@@ -77,7 +77,7 @@ static int		long_s(char *buf, va_list *ap, t_specif *spec)
 	return (1);
 }
 
-static int		default_s(char *buf, va_list *ap, t_specif *spec)
+static int		default_s(t_buf *buf, va_list *ap, t_specif *spec)
 {
 	va_list		cp;
 	int			len;
@@ -96,7 +96,7 @@ static int		default_s(char *buf, va_list *ap, t_specif *spec)
 	return (1);
 }
 
-uintmax_t		printf_s(char *buf, va_list *ap, t_specif *spec)
+uintmax_t		printf_s(t_buf *buf, va_list *ap, t_specif *spec)
 {
 	if (spec->conversion == 'c')
 		return (print_char(buf, va_arg(*ap, int), spec));

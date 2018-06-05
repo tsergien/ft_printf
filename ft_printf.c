@@ -14,40 +14,43 @@
 
 static int		read_format(char *s, va_list *ap)
 {
-	char	buf[BUFF_SIZE];
+	t_buf	buf;
 	int		symbols;
 
-	ft_bzero(buf, BUFF_SIZE);
+	buf.printed = 0;
+	ft_bzero(buf.buf, BUFF_SIZE);
 	while (*s)
 	{
 		if (*s != '%')
-			set_to_buf(buf, s++, 1);
+			set_to_buf(&buf, s++, 1);
 		else if (*s == '%' && *(s + 1) == '%')
 		{
-			set_to_buf(buf, s, 1);
+			set_to_buf(&buf, s, 1);
 			s += 2;
 		}
 		else
 		{
-			symbols = write_value_to_buf(buf, ap, ++s);
+			symbols = write_value_to_buf(&buf, ap, ++s);
 			if (symbols < 0)
 				return (0);
 			s = s + symbols;
 		}
 	}
-	putbuf(buf);
-	return (1);
+	putbuf(&buf);
+	return (buf.printed);
 }
 
 int		ft_printf(const char *format, ...)
 {
 	char	*p;
 	va_list	ap;
+	int		ret;
 
 	va_start(ap, format);
 	p = (char *)format;
-	if (!read_format(p, &ap))
+	ret = read_format(p, &ap);
+	if (!ret)
 		return (-1);
 	va_end(ap);
-	return (1);
+	return (ret);
 }

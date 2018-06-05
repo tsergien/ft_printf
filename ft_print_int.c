@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	add_sign(char *buf, t_specif *spec, long int val)
+void	add_sign(t_buf *buf, t_specif *spec, long int val)
 {
 	if (val < 0)
 		set_to_buf(buf, "-", 1);
@@ -22,7 +22,7 @@ void	add_sign(char *buf, t_specif *spec, long int val)
 		set_to_buf(buf, " ", 1);
 }
 
-static int		print_short(char *buf, va_list *ap, t_specif *spec)
+static int		print_short(t_buf *buf, va_list *ap, t_specif *spec)
 {
 	short int		val;
 	size_t			len;
@@ -36,7 +36,7 @@ static int		print_short(char *buf, va_list *ap, t_specif *spec)
 	return (1);
 }
 
-static int		print_default(char *buf, va_list *ap, t_specif *spec)
+static int		print_default(t_buf *buf, va_list *ap, t_specif *spec)
 {
 	int				val;
 	size_t			len;
@@ -50,7 +50,7 @@ static int		print_default(char *buf, va_list *ap, t_specif *spec)
 	return (1);
 }
 
-static int		print_long(char *buf, va_list *ap, t_specif *spec)
+static int		print_long(t_buf *buf, va_list *ap, t_specif *spec)
 {
 	intmax_t		val;
 	size_t			len;
@@ -64,7 +64,7 @@ static int		print_long(char *buf, va_list *ap, t_specif *spec)
 	return (1);
 }
 
-uintmax_t		printf_int(char *buf, va_list *ap, t_specif *spec)
+uintmax_t		printf_int(t_buf *buf, va_list *ap, t_specif *spec)
 {
 	uintmax_t		res;
 

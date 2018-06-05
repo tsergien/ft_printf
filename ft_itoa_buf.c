@@ -32,7 +32,7 @@ static char	to_base_up(uintmax_t value)
 		return (0);
 }
 
-static void	fill_s(char *buf, int len, uintmax_t value, size_t base)
+static void	fill_s(t_buf *buf, int len, uintmax_t value, size_t base)
 {
 	char	tmp;
 
@@ -42,7 +42,7 @@ static void	fill_s(char *buf, int len, uintmax_t value, size_t base)
 	set_to_buf(buf, &tmp, 1);
 }
 
-static void	fill_s_high(char *buf, int len, uintmax_t value, size_t base)
+static void	fill_s_high(t_buf *buf, int len, uintmax_t value, size_t base)
 {
 	char	tmp;
 
@@ -52,7 +52,7 @@ static void	fill_s_high(char *buf, int len, uintmax_t value, size_t base)
 	set_to_buf(buf, &tmp, 1);
 }
 
-void	ft_itoa_buf(char *buf, uintmax_t value, size_t base, t_specif *spec)
+void	ft_itoa_buf(t_buf *buf, uintmax_t value, size_t base, t_specif *spec)
 {
 	int		len;
 	char	c;

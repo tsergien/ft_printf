@@ -30,20 +30,35 @@ typedef struct		s_specif
 	short int		size_mod;
 }					t_specif;
 
+typedef struct 		s_buf
+{
+	char			buf[BUFF_SIZE];
+	int				printed;
+}					t_buf;
+
 int		ft_printf(const char *format, ...);
 
-//***********************CHECK VALID*************
-int		is_conversion(char c);//
-int		is_flag(char c);//
-int		is_valid(char *str);///
+/*
+**********************CHECK VALID*************
+*/
 
-//************************BUF WORK****************
-void	putbuf(char *buf);
-void	set_to_buf(char *buf, char const *src, int n);
-int		write_value_to_buf(char *buf, va_list *ap, char *s);
+int		is_conversion(char c);
+int		is_flag(char c);
+int		is_valid(char *str);
+
+/*
+***********************BUF WORK****************
+*/
+
+void	putbuf(t_buf *buf);
+void	set_to_buf(t_buf *buf, char const *src, int n);
+int		write_value_to_buf(t_buf *buf, va_list *ap, char *s);
 int		init(char *s, t_specif *spec, va_list *ap);
 
-//************************FLAGS...*************
+/*
+***********************FLAGS...*************
+*/
+
 int		set_flags(char *s, t_specif *spec);
 int		set_width(char *s, t_specif *spec, va_list *ap);
 int		set_precision(char *s, t_specif *spec, va_list *ap);
@@ -57,34 +72,39 @@ int		is_hash(char flags);
 int		is_short(int size_mod);
 int		is_long(int size_mod);
 
-int		print_specificator(char *buf, va_list *ap, t_specif *spec);
+int		print_specificator(t_buf *buf, va_list *ap, t_specif *spec);
 //                   COVERSION cases funstions
-void	put_flags_uint(char *buf, t_specif *spec, size_t len, uintmax_t val);
-void	put_flags_minus_uint(char *buf, t_specif *spec, size_t len, uintmax_t val);
-void	put_flags_int(char *buf, t_specif *spec, size_t len, long int val);
-void	put_flags_minus_int(char *buf, t_specif *spec, size_t len, long int val);
+void	put_flags_uint(t_buf *buf, t_specif *spec, size_t len, uintmax_t val);
+void	put_flags_minus_uint(t_buf *buf, t_specif *spec, size_t len, uintmax_t val);
+void	put_flags_int(t_buf *buf, t_specif *spec, size_t len, long int val);
+void	put_flags_minus_int(t_buf *buf, t_specif *spec, size_t len, long int val);
 
-uintmax_t		printf_uint(char *buf, va_list *ap, t_specif *spec);
-uintmax_t		printf_int(char *buf, va_list *ap, t_specif *spec);
-uintmax_t		printf_s(char *buf, va_list *ap, t_specif *spec);
+uintmax_t		printf_uint(t_buf *buf, va_list *ap, t_specif *spec);
+uintmax_t		printf_int(t_buf *buf, va_list *ap, t_specif *spec);
+uintmax_t		printf_s(t_buf *buf, va_list *ap, t_specif *spec);
 
 
-void	ft_itoa_buf(char *buf, uintmax_t value, size_t base, t_specif *spec);
-void	ft_itoa_signed(char *buf, long int value, t_specif *spec);
+void	ft_itoa_buf(t_buf *buf, uintmax_t value, size_t base, t_specif *spec);
+void	ft_itoa_signed(t_buf *buf, long int value, t_specif *spec);
 int		num_len_signed(long int n, int base);
-//                   UINT
-void	add_precision_uint(char *buf, t_specif *spec, uintmax_t val);
-void	add_precision_int(char *buf, t_specif *spec, intmax_t val);
-void	add_pads_uint(char *buf, t_specif *spec, int len, uintmax_t val);
-void	add_pads_int(char *buf, t_specif *spec, int len, intmax_t val);
-void	add_hash(char *buf, t_specif *spec);
-//                      INT
-void	add_sign(char *buf, t_specif *spec, long int val);
+/*
+**                   UINT **
+*/
 
+void	add_precision_uint(t_buf *buf, t_specif *spec, uintmax_t val);
+void	add_precision_int(t_buf *buf, t_specif *spec, intmax_t val);
+void	add_pads_uint(t_buf *buf, t_specif *spec, int len, uintmax_t val);
+void	add_pads_int(t_buf *buf, t_specif *spec, int len, intmax_t val);
+void	add_hash(t_buf *buf, t_specif *spec);
 
+/*
+**          INT***********
+*/
+
+void	add_sign(t_buf *buf, t_specif *spec, long int val);
 int		get_base(char c);
-void	print_uni(intmax_t val, char *buf);
+void	print_uni(intmax_t val, t_buf *buf);
 int		wchar_len(wchar_t *s);
-void	add_spaces(char *buf, int n);
+void	add_spaces(t_buf *buf, int n);
 
 #endif

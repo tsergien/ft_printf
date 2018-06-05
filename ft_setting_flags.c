@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	put_flags_int(char *buf, t_specif *spec, size_t len, long int val)
+void	put_flags_int(t_buf *buf, t_specif *spec, size_t len, long int val)
 {
 	if (!is_zero(spec->flags))
 		add_pads_int(buf, spec, spec->width - len, val);
@@ -27,7 +27,7 @@ void	put_flags_int(char *buf, t_specif *spec, size_t len, long int val)
 	ft_itoa_signed(buf, val, spec);
 }
 
-void	put_flags_minus_int(char *buf, t_specif *spec, size_t len, long val)
+void	put_flags_minus_int(t_buf *buf, t_specif *spec, size_t len, long val)
 {
 	if (val != 0)
 		add_hash(buf, spec);
@@ -39,7 +39,7 @@ void	put_flags_minus_int(char *buf, t_specif *spec, size_t len, long val)
 	add_pads_int(buf, spec, spec->width - len, val);
 }
 
-void	put_flags_uint(char *buf, t_specif *spec, size_t len, uintmax_t val)
+void	put_flags_uint(t_buf *buf, t_specif *spec, size_t len, uintmax_t val)
 {
 	short int		base;
 
@@ -57,7 +57,7 @@ void	put_flags_uint(char *buf, t_specif *spec, size_t len, uintmax_t val)
 	ft_itoa_buf(buf, val, base, spec);
 }
 
-void	put_flags_minus_uint(char *buf, t_specif *spec, size_t len, uintmax_t val)
+void	put_flags_minus_uint(t_buf *buf, t_specif *spec, size_t len, uintmax_t val)
 {
 	short int		base;
 

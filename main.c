@@ -29,6 +29,9 @@ int main(int ac, char **av)
 	ft_printf("ft_print:_%10S\n", (wchar_t *)q);
 
 
+	printf("original:_%5%");
+	ft_printf("ft_print:_%5%");
+
 	free(q);
 	free(s);
 	return (0);

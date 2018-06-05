@@ -12,18 +12,19 @@
 
 #include "includes/ft_printf.h"
 
-void	putbuf(char *buf)
+void	putbuf(t_buf *buf)
 {
-	write(1, buf, ft_strlen(buf));
-	ft_bzero(buf, BUFF_SIZE);
+	buf->printed += ft_strlen(buf->buf);
+	write(1, buf->buf, ft_strlen(buf->buf));
+	ft_bzero(buf->buf, BUFF_SIZE);
 }
 
-void	set_to_buf(char *buf, char const *src, int n)
+void	set_to_buf(t_buf *buf, char const *src, int n)
 {
 	int		j;
 
 	j = 0;
-	while (buf[j] != '\0' && j < BUFF_SIZE)
+	while (buf->buf[j] != '\0' && j < BUFF_SIZE)
 		j++;
 	if (j >= BUFF_SIZE)
 	{
@@ -34,7 +35,7 @@ void	set_to_buf(char *buf, char const *src, int n)
 	{
 		if (j < BUFF_SIZE)
 		{
-			buf[j] = *src;
+			buf->buf[j] = *src;
 			j++;
 			src++;
 			n--;
@@ -64,7 +65,7 @@ int		init(char *s, t_specif *spec, va_list *ap)
 ** return amoount of symbols after %   **
 */
 
-int		write_value_to_buf(char *buf, va_list *ap, char *s)
+int		write_value_to_buf(t_buf *buf, va_list *ap, char *s)
 {
 	int			symb;
 	t_specif	spec;

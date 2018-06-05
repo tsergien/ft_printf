@@ -27,7 +27,7 @@ int		num_len_signed(long n, int base)
 	return (len);
 }
 
-static void	fill_buf(char *buf, int len, long int value)
+static void	fill_buf(t_buf *buf, int len, long int value)
 {
 	char	tmp;
 
@@ -37,7 +37,7 @@ static void	fill_buf(char *buf, int len, long int value)
 	set_to_buf(buf, &tmp, 1);
 }
 
-void		ft_itoa_signed(char *buf, long int value, t_specif *spec)
+void		ft_itoa_signed(t_buf *buf, long int value, t_specif *spec)
 {
 	int		len;
 
