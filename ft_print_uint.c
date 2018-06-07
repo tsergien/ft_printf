@@ -29,7 +29,8 @@ int		get_base(char c)
 
 	if (c == 'x' || c == 'X')
 		base = 16;
-	else if (c == 'd' || c == 'i' || c == 'D')
+	else if (c == 'd' || c == 'i' || c == 'D'
+		|| c == 'u' || c == 'U')
 		base = 10;
 	else
 		base = 8;
