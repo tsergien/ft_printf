@@ -31,7 +31,7 @@ void	set_to_buf(t_buf *buf, char const *src, int n)
 		putbuf(buf);
 		j = 0;
 	}
-	while (*src != '\0' && n)
+	while (src && *src && n)
 	{
 		if (j < BUFF_SIZE)
 		{
