@@ -64,7 +64,7 @@ static int		print_long(t_buf *buf, va_list *ap, t_specif *spec)
 	return (1);
 }
 
-uintmax_t		printf_int(t_buf *buf, va_list *ap, t_specif *spec)
+int				printf_int(t_buf *buf, va_list *ap, t_specif *spec)
 {
 	uintmax_t		res;
 

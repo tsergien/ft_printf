@@ -36,7 +36,7 @@ int		get_base(char c)
 	return (base);
 }
 
-uintmax_t		printf_uint(t_buf *buf, va_list *ap, t_specif *spec)
+int		printf_uint(t_buf *buf, va_list *ap, t_specif *spec)
 {
 	size_t			len;
 	short int		base;

@@ -23,11 +23,6 @@ static int		read_format(char *s, va_list *ap)
 	{
 		if (*s != '%')
 			set_to_buf(&buf, s++, 1);
-		else if (*s == '%' && *(s + 1) == '%')
-		{
-			set_to_buf(&buf, s, 1);
-			s += 2;
-		}
 		else
 		{
 			symbols = write_value_to_buf(&buf, ap, ++s);

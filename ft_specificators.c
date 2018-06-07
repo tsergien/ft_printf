@@ -22,9 +22,8 @@ int		print_specificator(t_buf *buf, va_list *ap, t_specif *spec)
 		|| spec->conversion == 'D')
 		return (printf_int(buf, ap, spec));
 	if (spec->conversion == 's' || spec->conversion == 'S'
-		|| spec->conversion == 'c' || spec->conversion == 'C')
+		|| spec->conversion == 'c' || spec->conversion == 'C'
+		|| spec->conversion == '%')
 		return (printf_s(buf, ap, spec));
-
-
 	return (0);
 }

@@ -73,20 +73,23 @@ int		is_short(int size_mod);
 int		is_long(int size_mod);
 
 int		print_specificator(t_buf *buf, va_list *ap, t_specif *spec);
-//                   COVERSION cases funstions
+/*
+********** COVERSION cases funstions ******
+*/
 void	put_flags_uint(t_buf *buf, t_specif *spec, size_t len, uintmax_t val);
 void	put_flags_minus_uint(t_buf *buf, t_specif *spec, size_t len, uintmax_t val);
 void	put_flags_int(t_buf *buf, t_specif *spec, size_t len, long int val);
 void	put_flags_minus_int(t_buf *buf, t_specif *spec, size_t len, long int val);
 
-uintmax_t		printf_uint(t_buf *buf, va_list *ap, t_specif *spec);
-uintmax_t		printf_int(t_buf *buf, va_list *ap, t_specif *spec);
-uintmax_t		printf_s(t_buf *buf, va_list *ap, t_specif *spec);
+int		printf_uint(t_buf *buf, va_list *ap, t_specif *spec);
+int		printf_int(t_buf *buf, va_list *ap, t_specif *spec);
+int		printf_s(t_buf *buf, va_list *ap, t_specif *spec);
 
 
 void	ft_itoa_buf(t_buf *buf, uintmax_t value, size_t base, t_specif *spec);
 void	ft_itoa_signed(t_buf *buf, long int value, t_specif *spec);
 int		num_len_signed(long int n, int base);
+
 /*
 **                   UINT **
 */
