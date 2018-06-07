@@ -14,7 +14,8 @@
 
 void			add_sign(t_buf *buf, t_specif *spec, long int val)
 {
-	if (val < 0)
+	if (val < 0 && (spec->conversion == 'D' ||
+		spec->conversion == 'd' || spec->conversion == 'i'))
 		set_to_buf(buf, "-", 1);
 	else if (is_plus(spec->flags))
 		set_to_buf(buf, "+", 1);

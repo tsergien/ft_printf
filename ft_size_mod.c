@@ -46,13 +46,13 @@ int		set_size_mod(char *s, t_specif *spec)
 			spec->size_mod = 3;
 		return (2);
 	}
-	if (*s == 'h' && is_conversion(*(s + 1)))
+	if (*s == 'h')
 		spec->size_mod = 2;
-	if (*s == 'l' && is_conversion(*(s + 1)))
+	if (*s == 'l')
 		spec->size_mod = 4;
-	if (*s == 'j' && is_conversion(*(s + 1)))
+	if (*s == 'j')
 		spec->size_mod = 5;
-	if (*s == 'z' && is_conversion(*(s + 1)))
+	if (*s == 'z')
 		spec->size_mod = 6;
 	if (spec->size_mod)
 		return (1);

@@ -79,13 +79,13 @@ int					print_specificator(t_buf *buf, va_list *ap, t_specif *spec);
 */
 
 void				put_flags_uint(t_buf *buf, t_specif *spec,
-					size_t len, uintmax_t val);
+					int len, uintmax_t val);
 void				put_flags_minus_uint(t_buf *buf, t_specif *spec,
-					size_t len, uintmax_t val);
-void				put_flags_int(t_buf *buf, t_specif *spec, size_t len,
-					long int val);
+					int len, uintmax_t val);
+void				put_flags_int(t_buf *buf, t_specif *spec, int len,
+					intmax_t val);
 void				put_flags_minus_int(t_buf *buf, t_specif *spec,
-					size_t len, long int val);
+					int len, intmax_t val);
 
 int					printf_uint(t_buf *buf, va_list *ap, t_specif *spec);
 int					printf_int(t_buf *buf, va_list *ap, t_specif *spec);
