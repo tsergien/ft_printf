@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int		num_len_signed(long n, int base)
+int			num_len_signed(long n, int base)
 {
 	int		len;
 

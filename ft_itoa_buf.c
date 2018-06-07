@@ -52,7 +52,8 @@ static void	fill_s_high(t_buf *buf, int len, uintmax_t value, size_t base)
 	set_to_buf(buf, &tmp, 1);
 }
 
-void	ft_itoa_buf(t_buf *buf, uintmax_t value, size_t base, t_specif *spec)
+void		ft_itoa_buf(t_buf *buf, uintmax_t value,
+	size_t base, t_specif *spec)
 {
 	int		len;
 	char	c;

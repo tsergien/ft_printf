@@ -32,7 +32,7 @@ static int		get_flag_index(char c)
 **amount(how much shift string format  **
 */
 
-int		set_flags(char *s, t_specif *spec)
+int				set_flags(char *s, t_specif *spec)
 {
 	int		i;
 	int		j;

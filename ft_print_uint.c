@@ -42,7 +42,7 @@ int		printf_uint(t_buf *buf, va_list *ap, t_specif *spec)
 	short int		base;
 	uintmax_t		val;
 
-	val = va_arg(*ap, 	uintmax_t);
+	val = va_arg(*ap, uintmax_t);
 	base = get_base(spec->conversion);
 	len = ft_num_len(val, base);
 	if (is_hash(spec->flags) && val != 0 &&

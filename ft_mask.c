@@ -26,7 +26,6 @@
 ***  0x3F = 10xx xxxx   ****
 */
 
-
 static void	get_mask(intmax_t val, int *mask)
 {
 	if (val <= 0x7F)
@@ -53,10 +52,10 @@ static void	get_mask(intmax_t val, int *mask)
 		mask[1] = 0x80 | ((val >> 12) & 0x3F);
 		mask[2] = 0x80 | ((val >> 6) & 0x3F);
 		mask[3] = 0x80 | (val & 0x3F);
-	}	
+	}
 }
 
-void	print_uni(intmax_t val, t_buf *buf)
+void		print_uni(intmax_t val, t_buf *buf)
 {
 	char	tmp;
 	int		i;
@@ -71,7 +70,7 @@ void	print_uni(intmax_t val, t_buf *buf)
 	}
 }
 
-int		wchar_len(wchar_t *s)
+int			wchar_len(wchar_t *s)
 {
 	int		len;
 	int		len_of_byte;
@@ -93,7 +92,7 @@ int		wchar_len(wchar_t *s)
 	return (len);
 }
 
-void	add_spaces(t_buf *buf, int n)
+void		add_spaces(t_buf *buf, int n)
 {
 	while (n-- > 0)
 		set_to_buf(buf, " ", 1);

@@ -12,7 +12,7 @@
 
 #include "includes/ft_printf.h"
 
-static int		read_format(char *s, va_list *ap)
+static int	read_format(char *s, va_list *ap)
 {
 	t_buf	buf;
 	int		symbols;
@@ -27,7 +27,7 @@ static int		read_format(char *s, va_list *ap)
 		{
 			symbols = write_value_to_buf(&buf, ap, ++s);
 			if (symbols < 0)
-				return (0);
+				return (-1);
 			s = s + symbols;
 		}
 	}
@@ -35,7 +35,7 @@ static int		read_format(char *s, va_list *ap)
 	return (buf.printed);
 }
 
-int		ft_printf(const char *format, ...)
+int			ft_printf(const char *format, ...)
 {
 	char	*p;
 	va_list	ap;
@@ -44,8 +44,6 @@ int		ft_printf(const char *format, ...)
 	va_start(ap, format);
 	p = (char *)format;
 	ret = read_format(p, &ap);
-	if (!ret)
-		return (-1);
 	va_end(ap);
 	return (ret);
 }

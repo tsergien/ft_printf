@@ -52,12 +52,13 @@ void	put_flags_uint(t_buf *buf, t_specif *spec, size_t len, uintmax_t val)
 	if (is_zero(spec->flags))
 		add_pads_uint(buf, spec, spec->width - len, val);
 	add_precision_uint(buf, spec, val);
-	if (val == 0 && spec->precision == 0)// && spec->width < len)
+	if (val == 0 && spec->precision == 0)
 		return ;
 	ft_itoa_buf(buf, val, base, spec);
 }
 
-void	put_flags_minus_uint(t_buf *buf, t_specif *spec, size_t len, uintmax_t val)
+void	put_flags_minus_uint(t_buf *buf, t_specif *spec,
+	size_t len, uintmax_t val)
 {
 	short int		base;
 

@@ -12,7 +12,7 @@
 
 #include "includes/ft_printf.h"
 
-int		is_conversion(char c)
+int			is_conversion(char c)
 {
 	if (c == 's' || c == 'S' || c == 'p' ||
 		c == 'd' || c == 'D' || c == 'i' ||
@@ -23,7 +23,7 @@ int		is_conversion(char c)
 	return (0);
 }
 
-int		is_flag(char c)
+int			is_flag(char c)
 {
 	if (c == '#' || c == '0' || c == '-' ||
 		c == '+' || c == ' ')
@@ -31,7 +31,7 @@ int		is_flag(char c)
 	return (0);
 }
 
-static int		is_size_mod(char c)
+static int	is_size_mod(char c)
 {
 	if (c == 'h' || c == 'l' ||
 		c == 'j' || c == 'z')
@@ -39,7 +39,7 @@ static int		is_size_mod(char c)
 	return (0);
 }
 
-static int		is_width_precision(char **s)
+static int	is_width_precision(char **s)
 {
 	if (**s == '*')
 		(*s)++;
@@ -59,7 +59,7 @@ static int		is_width_precision(char **s)
 	return (1);
 }
 
-int		is_valid(char *s)
+int			is_valid(char *s)
 {
 	while (*s && is_flag(*s))
 		s++;

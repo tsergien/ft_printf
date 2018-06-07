@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	add_sign(t_buf *buf, t_specif *spec, long int val)
+void			add_sign(t_buf *buf, t_specif *spec, long int val)
 {
 	if (val < 0)
 		set_to_buf(buf, "-", 1);
@@ -66,7 +66,7 @@ static int		print_long(t_buf *buf, va_list *ap, t_specif *spec)
 
 int				printf_int(t_buf *buf, va_list *ap, t_specif *spec)
 {
-	uintmax_t		res;
+	int				res;
 
 	if (is_short(spec->size_mod))
 		res = print_short(buf, ap, spec);

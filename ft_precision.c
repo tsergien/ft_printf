@@ -17,7 +17,7 @@
 **(for '.') (how much should we shift string format)**
 */
 
-static int		default_precision(char *s)
+static int	default_precision(char *s)
 {
 	while (*s && ft_isdigit(*s))
 		s++;
@@ -26,7 +26,7 @@ static int		default_precision(char *s)
 	return (1);
 }
 
-int		set_precision(char *s, t_specif *spec, va_list *ap)
+int			set_precision(char *s, t_specif *spec, va_list *ap)
 {
 	if (*s == '.')
 	{
@@ -48,7 +48,7 @@ int		set_precision(char *s, t_specif *spec, va_list *ap)
 	return (0);
 }
 
-void	add_precision_uint(t_buf *buf, t_specif *spec, uintmax_t val)
+void		add_precision_uint(t_buf *buf, t_specif *spec, uintmax_t val)
 {
 	int		n;
 
@@ -66,7 +66,7 @@ void	add_precision_uint(t_buf *buf, t_specif *spec, uintmax_t val)
 		set_to_buf(buf, "0", 1);
 }
 
-void	add_precision_int(t_buf *buf, t_specif *spec, intmax_t val)
+void		add_precision_int(t_buf *buf, t_specif *spec, intmax_t val)
 {
 	int		n;
 
