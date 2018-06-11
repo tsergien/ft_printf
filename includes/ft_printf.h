@@ -19,7 +19,7 @@
 # include <wchar.h>
 # include <stdint.h>
 # include "../libft/includes/libft.h"
-# define BUFF_SIZE 1024
+# define BUFF_SIZE 500
 
 typedef struct		s_specif
 {
@@ -82,7 +82,7 @@ void				put_flags_uint(t_buf *buf, t_specif *spec,
 					int len, uintmax_t val);
 void				put_flags_minus_uint(t_buf *buf, t_specif *spec,
 					int len, uintmax_t val);
-void				put_flags_int(t_buf *buf, t_specif *spec, int len,
+void				put_flags_int(t_buf *buf, t_specif *spec, int num_len,
 					intmax_t val);
 void				put_flags_minus_int(t_buf *buf, t_specif *spec,
 					int len, intmax_t val);

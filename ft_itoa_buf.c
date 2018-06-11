@@ -63,7 +63,7 @@ void		ft_itoa_buf(t_buf *buf, uintmax_t value,
 	c = spec->conversion;
 	len = ft_num_len(value, base);
 	if (c == 'x' || c == 'o' || c == 'O'
-		|| c == 'u' || c == 'U')
+		|| c == 'u' || c == 'U' || c == 'p')
 		fill_s(buf, len, value, base);
 	if (c == 'X')
 		fill_s_high(buf, len, value, base);

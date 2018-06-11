@@ -14,17 +14,17 @@
 
 int			num_len_signed(long n, int base)
 {
-	int		len;
+	int		l;
 
-	len = 0;
+	l = 0;
 	if (n == 0)
 		return (1);
-	while (n)
+	while (n > 0)
 	{
-		len++;
+		l++;
 		n = n / base;
 	}
-	return (len);
+	return (l);
 }
 
 static void	fill_buf(t_buf *buf, int len, long int value)

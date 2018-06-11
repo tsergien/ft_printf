@@ -40,14 +40,14 @@ static int		print_short(t_buf *buf, va_list *ap, t_specif *spec)
 static int		print_default(t_buf *buf, va_list *ap, t_specif *spec)
 {
 	int				val;
-	size_t			len;
+	int				num_len;
 
 	val = va_arg(*ap, int);
-	len = num_len_signed(val, 10);
+	num_len = num_len_signed(val, 10);
 	if (!is_minus(spec->flags))
-		put_flags_int(buf, spec, len, val);
+		put_flags_int(buf, spec, num_len, val);
 	else
-		put_flags_minus_int(buf, spec, len, val);
+		put_flags_minus_int(buf, spec, num_len, val);
 	return (1);
 }
 

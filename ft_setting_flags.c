@@ -12,15 +12,15 @@
 
 #include "ft_printf.h"
 
-void	put_flags_int(t_buf *buf, t_specif *spec, int len, intmax_t val)
+void	put_flags_int(t_buf *buf, t_specif *spec, int number_len, intmax_t val)
 {
 	if (!is_zero(spec->flags))
-		add_pads_int(buf, spec, spec->width - len, val);
+		add_pads_int(buf, spec, (spec->width - number_len), val);
 	if (val != 0)
 		add_hash(buf, spec);
 	add_sign(buf, spec, val);
 	if (is_zero(spec->flags))
-		add_pads_int(buf, spec, spec->width - len, val);
+		add_pads_int(buf, spec, (spec->width - number_len), val);
 	add_precision_int(buf, spec, val);
 	if (val == 0 && spec->precision == 0)
 		return ;
@@ -47,7 +47,8 @@ void	put_flags_uint(t_buf *buf, t_specif *spec, int len, uintmax_t val)
 	base = get_base(spec->conversion);
 	if (!is_zero(spec->flags))
 		add_pads_uint(buf, spec, spec->width - len, val);
-	if (val != 0 || (val == 0 && spec->precision == 0))
+	if (val != 0 || (val == 0 && spec->precision == 0)
+		|| spec->conversion == 'p')
 		add_hash(buf, spec);
 	add_sign(buf, spec, val);
 	if (is_zero(spec->flags))
@@ -64,7 +65,7 @@ void	put_flags_minus_uint(t_buf *buf, t_specif *spec,
 	short int		base;
 
 	base = get_base(spec->conversion);
-	if (val != 0)
+	if (val != 0 || spec->conversion == 'p')
 		add_hash(buf, spec);
 	add_sign(buf, spec, val);
 	add_precision_uint(buf, spec, val);

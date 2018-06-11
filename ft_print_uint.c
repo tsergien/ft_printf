@@ -17,8 +17,8 @@ void	add_hash(t_buf *buf, t_specif *spec)
 	if (is_hash(spec->flags) && spec->conversion == 'X'
 		&& spec->precision != 0)
 		set_to_buf(buf, "0X", 2);
-	else if (is_hash(spec->flags) && spec->conversion == 'x'
-		&& spec->precision != 0)
+	else if ((is_hash(spec->flags) && spec->conversion == 'x'
+		&& spec->precision != 0) || spec->conversion == 'p')
 		set_to_buf(buf, "0x", 2);
 	else if (is_hash(spec->flags) && (spec->conversion == 'O'
 		|| spec->conversion == 'o'))
@@ -29,7 +29,7 @@ int		get_base(char c)
 {
 	int		base;
 
-	if (c == 'x' || c == 'X')
+	if (c == 'x' || c == 'X' || c == 'p')
 		base = 16;
 	else if (c == 'd' || c == 'i' || c == 'D'
 		|| c == 'u' || c == 'U')
@@ -41,15 +41,16 @@ int		get_base(char c)
 
 int		printf_uint(t_buf *buf, va_list *ap, t_specif *spec)
 {
-	size_t			len;
+	int				len;
 	short int		base;
 	uintmax_t		val;
 
 	val = va_arg(*ap, uintmax_t);
 	base = get_base(spec->conversion);
 	len = ft_num_len(val, base);
-	if (is_hash(spec->flags) && val != 0 &&
+	if ((is_hash(spec->flags) && val != 0 &&
 		(spec->conversion == 'x' || spec->conversion == 'X'))
+		|| spec->conversion == 'p')
 		len += 2;
 	if (is_hash(spec->flags) && val != 0 &&
 		(spec->conversion == 'o' || spec->conversion == 'O'))
