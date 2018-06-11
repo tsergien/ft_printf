@@ -72,6 +72,6 @@ void		add_precision_int(t_buf *buf, t_specif *spec, intmax_t val)
 	n = spec->precision - l;
 	if (base == 8 && is_hash(spec->flags) && val != 0)
 		n--;
-	while (n-- > -1)
+	while (n-- > 0)
 		set_to_buf(buf, "0", 1);
 }
