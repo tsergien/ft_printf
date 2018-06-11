@@ -53,8 +53,6 @@ static int		print_char(t_buf *buf, va_list *ap, t_specif *spec)
 	if (!is_minus(spec->flags))
 		add_spaces(buf, spec->width - 1);
 	set_to_buf(buf, &char_symbol, 1);
-	// if (char_symbol == '\0')
-	// 	set_to_buf(buf, "\0", 1);
 	if (is_minus(spec->flags))
 		add_spaces(buf, spec->width - 1);
 	return (1);
