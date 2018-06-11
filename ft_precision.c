@@ -67,7 +67,7 @@ void		add_precision_int(t_buf *buf, t_specif *spec, intmax_t val)
 	int		l;
 	int		base;
 
-	base = get_base(val);
+	base = get_base(spec->conversion);
 	l = num_len_signed(val, base);
 	n = spec->precision - l;
 	if (base == 8 && is_hash(spec->flags) && val != 0)

@@ -114,7 +114,7 @@ void				add_hash(t_buf *buf, t_specif *spec);
 */
 
 void				add_sign(t_buf *buf, t_specif *spec, long int val);
-int					get_base(char c);
+int					get_base(const char c);
 void				print_uni(intmax_t val, t_buf *buf);
 int					wchar_len(wchar_t *s);
 void				add_spaces(t_buf *buf, int n);

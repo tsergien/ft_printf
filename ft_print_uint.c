@@ -25,7 +25,7 @@ void	add_hash(t_buf *buf, t_specif *spec)
 		set_to_buf(buf, "0", 1);
 }
 
-int		get_base(char c)
+int		get_base(const char c)
 {
 	int		base;
 
