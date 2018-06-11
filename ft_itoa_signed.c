@@ -19,7 +19,7 @@ int			num_len_signed(long n, int base)
 	l = 0;
 	if (n == 0)
 		return (1);
-	while (n > 0)
+	while (n)
 	{
 		l++;
 		n = n / base;
