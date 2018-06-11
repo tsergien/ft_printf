@@ -50,7 +50,7 @@ int					is_valid(char *str);
 ***********************BUF WORK****************
 */
 
-void				putbuf(t_buf *buf);
+void				putbuf(t_buf *buf, int *index);
 void				set_to_buf(t_buf *buf, char const *src, int n);
 int					write_value_to_buf(t_buf *buf, va_list *ap, char *s);
 int					init(char *s, t_specif *spec, va_list *ap);

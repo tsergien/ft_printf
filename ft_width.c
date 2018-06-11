@@ -39,7 +39,7 @@ void	add_pads_uint(t_buf *buf, t_specif *spec, int len, uintmax_t val)
 	short int	base;
 
 	base = get_base(spec->conversion);
-	if (is_zero(spec->flags))
+	if (is_zero(spec->flags) && !is_minus(spec->flags))
 		pad = '0';
 	else
 		pad = ' ';
@@ -60,7 +60,7 @@ void	add_pads_int(t_buf *buf, t_specif *spec, int len, long int val)
 	short int	base;
 
 	base = get_base(spec->conversion);
-	if (is_zero(spec->flags))
+	if (is_zero(spec->flags) && !is_minus(spec->flags))
 		pad = '0';
 	else
 		pad = ' ';

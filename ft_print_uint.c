@@ -14,9 +14,11 @@
 
 void	add_hash(t_buf *buf, t_specif *spec)
 {
-	if (is_hash(spec->flags) && spec->conversion == 'X')
+	if (is_hash(spec->flags) && spec->conversion == 'X'
+		&& spec->precision != 0)
 		set_to_buf(buf, "0X", 2);
-	else if (is_hash(spec->flags) && spec->conversion == 'x')
+	else if (is_hash(spec->flags) && spec->conversion == 'x'
+		&& spec->precision != 0)
 		set_to_buf(buf, "0x", 2);
 	else if (is_hash(spec->flags) && (spec->conversion == 'O'
 		|| spec->conversion == 'o'))

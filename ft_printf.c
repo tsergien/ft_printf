@@ -31,7 +31,7 @@ static int	read_format(char *s, va_list *ap)
 			s = s + symbols;
 		}
 	}
-	putbuf(&buf);
+	putbuf(&buf, &symbols);
 	return (buf.printed);
 }
 

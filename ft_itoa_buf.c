@@ -55,9 +55,11 @@ static void	fill_s_high(t_buf *buf, int len, uintmax_t value, size_t base)
 void		ft_itoa_buf(t_buf *buf, uintmax_t value,
 	size_t base, t_specif *spec)
 {
-	int		len;
-	char	c;
+	int				len;
+	char			c;
 
+	if (is_short(spec->size_mod))
+		value = value % 65536;
 	c = spec->conversion;
 	len = ft_num_len(value, base);
 	if (c == 'x' || c == 'o' || c == 'O'

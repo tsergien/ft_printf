@@ -12,8 +12,9 @@
 
 #include "includes/ft_printf.h"
 
-void	putbuf(t_buf *buf)
+void	putbuf(t_buf *buf, int *index)
 {
+	*index = 0;
 	buf->printed += ft_strlen(buf->buf);
 	write(1, buf->buf, ft_strlen(buf->buf));
 	ft_bzero(buf->buf, BUFF_SIZE);
@@ -27,11 +28,10 @@ void	set_to_buf(t_buf *buf, char const *src, int n)
 	while (buf->buf[j] != '\0' && j < BUFF_SIZE)
 		j++;
 	if (j >= BUFF_SIZE)
-	{
-		putbuf(buf);
-		j = 0;
-	}
-	while (src && *src && n)
+		putbuf(buf, &j);
+	if (src == NULL)
+		set_to_buf(buf, "(null)", 6);
+	while (src && *src != '\0' && n)
 	{
 		if (j < BUFF_SIZE)
 		{
@@ -41,10 +41,7 @@ void	set_to_buf(t_buf *buf, char const *src, int n)
 			n--;
 		}
 		else
-		{
-			putbuf(buf);
-			j = 0;
-		}
+			putbuf(buf, &j);
 	}
 }
 
