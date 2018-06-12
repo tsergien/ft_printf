@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "includes/ft_printf.h"
 
 void			add_sign(t_buf *buf, t_specif *spec, long int val)
 {
@@ -23,12 +23,12 @@ void			add_sign(t_buf *buf, t_specif *spec, long int val)
 		set_to_buf(buf, " ", 1);
 }
 
-static int		print_short(t_buf *buf, va_list ap, t_specif *spec)
+static int		print_short(t_buf *buf, va_list *ap, t_specif *spec)
 {
 	short int		val;
 	size_t			len;
 
-	val = va_arg(ap, int);
+	val = va_arg(*ap, int);
 	len = num_len_signed(val, 10);
 	if (!is_minus(spec->flags))
 		put_flags_int(buf, spec, len, val);
@@ -37,12 +37,12 @@ static int		print_short(t_buf *buf, va_list ap, t_specif *spec)
 	return (1);
 }
 
-static int		print_default(t_buf *buf, va_list ap, t_specif *spec)
+static int		print_default(t_buf *buf, va_list *ap, t_specif *spec)
 {
 	int				val;
 	int				num_len;
 
-	val = va_arg(ap, int);
+	val = va_arg(*ap, int);
 	num_len = num_len_signed(val, 10);
 	if (!is_minus(spec->flags))
 		put_flags_int(buf, spec, num_len, val);
@@ -51,12 +51,12 @@ static int		print_default(t_buf *buf, va_list ap, t_specif *spec)
 	return (1);
 }
 
-static int		print_long(t_buf *buf, va_list ap, t_specif *spec)
+static int		print_long(t_buf *buf, va_list *ap, t_specif *spec)
 {
 	intmax_t		val;
 	size_t			len;
 
-	val = va_arg(ap, intmax_t);
+	val = va_arg(*ap, intmax_t);
 	len = num_len_signed(val, 10);
 	if (!is_minus(spec->flags))
 		put_flags_int(buf, spec, len, val);
@@ -65,7 +65,7 @@ static int		print_long(t_buf *buf, va_list ap, t_specif *spec)
 	return (1);
 }
 
-int				printf_int(t_buf *buf, va_list ap, t_specif *spec)
+int				printf_int(t_buf *buf, va_list *ap, t_specif *spec)
 {
 	int				res;
 

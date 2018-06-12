@@ -45,7 +45,7 @@ void	set_to_buf(t_buf *buf, char const *src, int n)
 	}
 }
 
-int		init(char *s, t_specif *spec, va_list ap)
+int		init(char *s, t_specif *spec, va_list *ap)
 {
 	char	*start_s;
 
@@ -62,7 +62,7 @@ int		init(char *s, t_specif *spec, va_list ap)
 ** return amoount of symbols after %   **
 */
 
-int		write_value_to_buf(t_buf *buf, va_list ap, char *s)
+int		write_value_to_buf(t_buf *buf, va_list *ap, char *s)
 {
 	int			symb;
 	t_specif	spec;

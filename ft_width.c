@@ -17,11 +17,11 @@
 ** (how much should we shift string format)**
 */
 
-int		set_width(char *s, t_specif *spec, va_list ap)
+int		set_width(char *s, t_specif *spec, va_list *ap)
 {
 	if (*s == '*')
 	{
-		spec->width = va_arg(ap, int);
+		spec->width = va_arg(*ap, int);
 		return (1);
 	}
 	if (ft_isdigit(*s))

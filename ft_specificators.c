@@ -12,7 +12,7 @@
 
 #include "includes/ft_printf.h"
 
-int		print_specificator(t_buf *buf, va_list ap, t_specif *spec)
+int		print_specificator(t_buf *buf, va_list *ap, t_specif *spec)
 {
 	if (spec->conversion == 'x' || spec->conversion == 'X'
 		|| spec->conversion == 'o' || spec->conversion == 'O'
