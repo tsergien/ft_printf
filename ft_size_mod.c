@@ -30,7 +30,7 @@ int		is_short(int size_mod)
 int		is_long(int size_mod)
 {
 	if (size_mod == 4 || size_mod == 3
-		|| size_mod == 5)
+		|| size_mod == 5 || size_mod == 6)
 		return (1);
 	return (0);
 }
