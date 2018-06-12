@@ -45,7 +45,7 @@ static int		long_c(t_buf *buf, va_list *ap, t_specif *spec)
 static int		print_char(t_buf *buf, va_list *ap, t_specif *spec)
 {
 	char		char_symbol;
-	int			index;
+	int			ind;
 
 	if (spec->conversion == '%')
 		char_symbol = '%';
@@ -56,7 +56,7 @@ static int		print_char(t_buf *buf, va_list *ap, t_specif *spec)
 	set_to_buf(buf, &char_symbol, 1);
 	if (char_symbol == 0)
 	{
-		putbuf(buf, &index);
+		putbuf(buf, &ind);
 		write(1, "\0", 1);
 		buf->printed += 1;
 	}
