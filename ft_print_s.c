@@ -67,18 +67,19 @@ static int		print_char(t_buf *buf, va_list *ap, t_specif *spec)
 
 static int		long_s(t_buf *buf, va_list *ap, t_specif *spec)
 {
-	va_list		cp;
 	int			len;
 	wchar_t		*s;
 
 	if (spec->precision == 0)
 		return (1);
-	va_copy(cp, *ap);
-	len = wchar_len(va_arg(cp, wchar_t *));
 	s = va_arg(*ap, wchar_t *);
+	if (!s)
+		set_to_buf(buf, NULL, 1);
+	else
+		len = wchar_len(s);
 	if (!is_minus(spec->flags))
 		add_spaces(buf, spec->width - len);
-	while (*s)
+	while (s && *s)
 	{
 		print_uni((int)*s, buf);
 		s++;

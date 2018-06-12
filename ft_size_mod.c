@@ -38,11 +38,12 @@ int		is_long(int size_mod)
 int		set_size_mod(char *s, t_specif *spec)
 {
 	spec->size_mod = 0;
-	if ((*s == *(s + 1) || *s == *(s + 1)) && is_conversion(*(s + 2)))
+	if ((*s == 'h' && *(s + 1) == 'h')
+		|| (*s == 'l' && *(s + 1) == 'l'))
 	{
-		if (*s == 'h' && *(s + 1) == 'h')
+		if (*s == 'h')
 			spec->size_mod = 1;
-		if (*s == 'l' && *(s + 1) == 'l')
+		else
 			spec->size_mod = 3;
 		return (2);
 	}
