@@ -55,7 +55,7 @@ void		add_precision_uint(t_buf *buf, t_specif *spec, uintmax_t val)
 
 	len = ft_num_len(val, get_base(spec->conversion));
 	n = spec->precision - len;
-	if (get_base(val) == 8 && is_hash(spec->flags) && val != 0)
+	if (get_base(spec->conversion) == 8 && is_hash(spec->flags) && val != 0)
 		n--;
 	while (n-- && n > -1)
 		set_to_buf(buf, "0", 1);

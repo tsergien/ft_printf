@@ -31,11 +31,10 @@ int		get_base(const char c)
 
 	if (c == 'x' || c == 'X' || c == 'p')
 		base = 16;
-	else if (c == 'd' || c == 'i' || c == 'D'
-		|| c == 'u' || c == 'U')
-		base = 10;
-	else
+	else if (c == 'O' || c == 'o')
 		base = 8;
+	else
+		base = 10;
 	return (base);
 }
 
