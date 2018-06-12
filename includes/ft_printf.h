@@ -52,16 +52,16 @@ int					is_valid(char *str);
 
 void				putbuf(t_buf *buf, int *index);
 void				set_to_buf(t_buf *buf, char const *src, int n);
-int					write_value_to_buf(t_buf *buf, va_list *ap, char *s);
-int					init(char *s, t_specif *spec, va_list *ap);
+int					write_value_to_buf(t_buf *buf, va_list ap, char *s);
+int					init(char *s, t_specif *spec, va_list ap);
 
 /*
 ***********************FLAGS...*************
 */
 
 int					set_flags(char *s, t_specif *spec);
-int					set_width(char *s, t_specif *spec, va_list *ap);
-int					set_precision(char *s, t_specif *spec, va_list *ap);
+int					set_width(char *s, t_specif *spec, va_list ap);
+int					set_precision(char *s, t_specif *spec, va_list ap);
 int					set_size_mod(char *s, t_specif *spec);
 int					set_conversion(char *s, t_specif *spec);
 int					is_minus(char flags);
@@ -72,7 +72,7 @@ int					is_hash(char flags);
 int					is_short(int size_mod);
 int					is_long(int size_mod);
 
-int					print_specificator(t_buf *buf, va_list *ap, t_specif *spec);
+int					print_specificator(t_buf *buf, va_list ap, t_specif *spec);
 
 /*
 ********** COVERSION cases funstions ******
@@ -87,9 +87,9 @@ void				put_flags_int(t_buf *buf, t_specif *spec, int num_len,
 void				put_flags_minus_int(t_buf *buf, t_specif *spec,
 					int len, intmax_t val);
 
-int					printf_uint(t_buf *buf, va_list *ap, t_specif *spec);
-int					printf_int(t_buf *buf, va_list *ap, t_specif *spec);
-int					printf_s(t_buf *buf, va_list *ap, t_specif *spec);
+int					printf_uint(t_buf *buf, va_list ap, t_specif *spec);
+int					printf_int(t_buf *buf, va_list ap, t_specif *spec);
+int					printf_s(t_buf *buf, va_list ap, t_specif *spec);
 
 void				ft_itoa_buf(t_buf *buf, uintmax_t value, size_t base,
 					t_specif *spec);

@@ -26,7 +26,7 @@ static int	default_precision(char *s)
 	return (1);
 }
 
-int			set_precision(char *s, t_specif *spec, va_list *ap)
+int			set_precision(char *s, t_specif *spec, va_list ap)
 {
 	if (*s == '.')
 	{
@@ -38,7 +38,7 @@ int			set_precision(char *s, t_specif *spec, va_list *ap)
 			return (1);
 		if (*s == '*')
 		{
-			spec->precision = va_arg(*ap, int);
+			spec->precision = va_arg(ap, int);
 			return (2);
 		}
 		spec->precision = ft_atoi(s);

@@ -12,12 +12,13 @@
 
 #include "includes/ft_printf.h"
 
-static int	read_format(char *s, va_list *ap)
+static int	read_format(char *s, va_list ap)
 {
 	t_buf	buf;
 	int		symbols;
 
 	buf.printed = 0;
+	ft_bzero(&buf, sizeof(t_buf));
 	ft_bzero(buf.buf, BUFF_SIZE);
 	while (*s)
 	{
@@ -26,6 +27,7 @@ static int	read_format(char *s, va_list *ap)
 		else
 		{
 			symbols = write_value_to_buf(&buf, ap, ++s);
+			set_to_buf(&buf, "\0", 1);
 			if (symbols < 0)
 				return (-1);
 			s = s + symbols;
@@ -43,7 +45,7 @@ int			ft_printf(const char *format, ...)
 
 	va_start(ap, format);
 	p = (char *)format;
-	ret = read_format(p, &ap);
+	ret = read_format(p, ap);
 	va_end(ap);
 	return (ret);
 }

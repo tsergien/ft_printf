@@ -38,14 +38,15 @@ int		get_base(const char c)
 	return (base);
 }
 
-int		printf_uint(t_buf *buf, va_list *ap, t_specif *spec)
+int		printf_uint(t_buf *buf, va_list ap, t_specif *spec)
 {
 	int				len;
 	short int		base;
 	uintmax_t		val;
 
-	val = va_arg(*ap, uintmax_t);
+	val = va_arg(ap, uintmax_t);
 	base = get_base(spec->conversion);
+	printf("\n|conv: %c, base: %d\n, val: %jd|\n", spec->conversion, base, val);
 	len = ft_num_len(val, base);
 	if ((is_hash(spec->flags) && val != 0 &&
 		(spec->conversion == 'x' || spec->conversion == 'X'))
