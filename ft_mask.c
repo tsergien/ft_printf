@@ -63,7 +63,7 @@ void		print_uni(intmax_t val, t_buf *buf)
 
 	i = -1;
 	get_mask(val, mask);
-	while (mask[++i] != 0)
+	while (mask[++i] != 0 && i < 4)
 	{
 		tmp = mask[i];
 		set_to_buf(buf, &tmp, 1);
