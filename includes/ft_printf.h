@@ -43,6 +43,7 @@ int					ft_printf(const char *format, ...);
 */
 
 int					is_conversion(char c);
+int					is_long_conv(char c);
 int					is_flag(char c);
 int					is_valid(char *str);
 
@@ -79,9 +80,9 @@ int					print_specificator(t_buf *buf, va_list *ap, t_specif *spec);
 */
 
 void				put_flags_uint(t_buf *buf, t_specif *spec,
-					int len, uintmax_t val);
+					int len, unsigned long val);
 void				put_flags_minus_uint(t_buf *buf, t_specif *spec,
-					int len, uintmax_t val);
+					int len, unsigned long val);
 void				put_flags_int(t_buf *buf, t_specif *spec, int num_len,
 					intmax_t val);
 void				put_flags_minus_int(t_buf *buf, t_specif *spec,
@@ -91,20 +92,20 @@ int					printf_uint(t_buf *buf, va_list *ap, t_specif *spec);
 int					printf_int(t_buf *buf, va_list *ap, t_specif *spec);
 int					printf_s(t_buf *buf, va_list *ap, t_specif *spec);
 
-void				ft_itoa_buf(t_buf *buf, uintmax_t value, size_t base,
+void				ft_itoa_buf(t_buf *buf, unsigned long value, size_t base,
 					t_specif *spec);
-void				ft_itoa_signed(t_buf *buf, long int value, t_specif *spec);
-int					num_len_signed(long int n, int base);
+void				ft_itoa_signed(t_buf *buf, intmax_t value);
+int					num_len_signed(intmax_t n, int base);
 
 /*
 ************************UINT**********
 */
 
 void				add_precision_uint(t_buf *buf, t_specif *spec,
-					uintmax_t val);
+					unsigned int val);
 void				add_precision_int(t_buf *buf, t_specif *spec, intmax_t val);
 void				add_pads_uint(t_buf *buf, t_specif *spec,
-					int len, uintmax_t val);
+					int len, unsigned int val);
 void				add_pads_int(t_buf *buf, t_specif *spec,
 					int len, intmax_t val);
 void				add_hash(t_buf *buf, t_specif *spec);

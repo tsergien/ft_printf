@@ -29,6 +29,8 @@ static int		print_short(t_buf *buf, va_list *ap, t_specif *spec)
 	size_t			len;
 
 	val = va_arg(*ap, int);
+	if (spec->size_mod == 1)
+		val = (char)val;
 	len = num_len_signed(val, 10);
 	if (!is_minus(spec->flags))
 		put_flags_int(buf, spec, len, val);
@@ -54,9 +56,10 @@ static int		print_default(t_buf *buf, va_list *ap, t_specif *spec)
 static int		print_long(t_buf *buf, va_list *ap, t_specif *spec)
 {
 	intmax_t		val;
-	size_t			len;
+	int				len;
 
 	val = va_arg(*ap, intmax_t);
+
 	len = num_len_signed(val, 10);
 	if (!is_minus(spec->flags))
 		put_flags_int(buf, spec, len, val);
@@ -71,7 +74,7 @@ int				printf_int(t_buf *buf, va_list *ap, t_specif *spec)
 
 	if (is_short(spec->size_mod))
 		res = print_short(buf, ap, spec);
-	else if (is_long(spec->size_mod) || spec->conversion == 'D')
+	else if (is_long(spec->size_mod) || is_long_conv(spec->conversion))
 		res = print_long(buf, ap, spec);
 	else
 		res = print_default(buf, ap, spec);

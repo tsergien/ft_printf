@@ -67,8 +67,8 @@ int		write_value_to_buf(t_buf *buf, va_list *ap, char *s)
 	int			symb;
 	t_specif	spec;
 
-	if (!is_valid(s))
-		return (-1);
+	// if (!is_valid(s))
+	// 	return (-1);
 	symb = init(s, &spec, ap);
 	if (print_specificator(buf, ap, &spec) == -1)
 		return (-1);

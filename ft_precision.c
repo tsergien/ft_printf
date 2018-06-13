@@ -48,7 +48,7 @@ int			set_precision(char *s, t_specif *spec, va_list *ap)
 	return (0);
 }
 
-void		add_precision_uint(t_buf *buf, t_specif *spec, uintmax_t val)
+void		add_precision_uint(t_buf *buf, t_specif *spec, unsigned int val)
 {
 	int		n;
 	int		len;

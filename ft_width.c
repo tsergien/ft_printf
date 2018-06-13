@@ -33,7 +33,7 @@ int		set_width(char *s, t_specif *spec, va_list *ap)
 	return (0);
 }
 
-void	add_pads_uint(t_buf *buf, t_specif *spec, int len, uintmax_t val)
+void	add_pads_uint(t_buf *buf, t_specif *spec, int len, unsigned int val)
 {
 	char		pad;
 	short int	base;

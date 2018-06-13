@@ -12,7 +12,7 @@
 
 #include "includes/ft_printf.h"
 
-static char	to_base(uintmax_t value)
+static char	to_base(unsigned long value)
 {
 	if (value <= 9)
 		return ('0' + value);
@@ -22,7 +22,7 @@ static char	to_base(uintmax_t value)
 		return (0);
 }
 
-static char	to_base_up(uintmax_t value)
+static char	to_base_up(unsigned long value)
 {
 	if (value <= 9)
 		return ('0' + value);
@@ -32,7 +32,7 @@ static char	to_base_up(uintmax_t value)
 		return (0);
 }
 
-static void	fill_s(t_buf *buf, int len, uintmax_t value, size_t base)
+static void	fill_s(t_buf *buf, int len, unsigned long value, size_t base)
 {
 	char	tmp;
 
@@ -42,7 +42,7 @@ static void	fill_s(t_buf *buf, int len, uintmax_t value, size_t base)
 	set_to_buf(buf, &tmp, 1);
 }
 
-static void	fill_s_high(t_buf *buf, int len, uintmax_t value, size_t base)
+static void	fill_s_high(t_buf *buf, int len, unsigned long value, size_t base)
 {
 	char	tmp;
 
@@ -52,13 +52,13 @@ static void	fill_s_high(t_buf *buf, int len, uintmax_t value, size_t base)
 	set_to_buf(buf, &tmp, 1);
 }
 
-void		ft_itoa_buf(t_buf *buf, uintmax_t value,
+void		ft_itoa_buf(t_buf *buf, unsigned long value,
 	size_t base, t_specif *spec)
 {
 	int				len;
 	char			c;
 
-	if (is_short(spec->size_mod))
+	if (is_short(spec->size_mod) && !is_long_conv(spec->conversion))
 		value = value % 65536;
 	c = spec->conversion;
 	len = ft_num_len(value, base);
