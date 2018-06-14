@@ -59,7 +59,6 @@ static int		print_long(t_buf *buf, va_list *ap, t_specif *spec)
 	int				len;
 
 	val = va_arg(*ap, intmax_t);
-
 	len = num_len_signed(val, 10);
 	if (!is_minus(spec->flags))
 		put_flags_int(buf, spec, len, val);

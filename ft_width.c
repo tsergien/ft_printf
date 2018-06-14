@@ -48,8 +48,8 @@ void	add_pads_uint(t_buf *buf, t_specif *spec, int len, unsigned int val)
 	if (base == 10 && (is_plus(spec->flags) ||
 		is_space(spec->flags)) && val != 0)
 		len--;
-	if ((int)spec->precision > ft_num_len(val, base))
-		len -= (int)spec->precision - ft_num_len(val, base);
+	if (spec->precision > ft_num_len(val, base))
+		len -= spec->precision - ft_num_len(val, base);
 	while (len-- > 0)
 		set_to_buf(buf, &pad, 1);
 }
@@ -69,8 +69,8 @@ void	add_pads_int(t_buf *buf, t_specif *spec, int pads_amount, long int val)
 	if (b == 10 && (is_plus(spec->flags) || val < 0 ||
 		is_space(spec->flags)))
 		pads_amount--;
-	if ((int)spec->precision > num_len_signed(val, b))
-		pads_amount -= (int)spec->precision - num_len_signed(val, b);
+	if (spec->precision > num_len_signed(val, b))
+		pads_amount -= spec->precision - num_len_signed(val, b);
 	while (pads_amount-- > 0)
 		set_to_buf(buf, &pad, 1);
 }

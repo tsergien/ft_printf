@@ -12,23 +12,23 @@
 
 #include "includes/ft_printf.h"
 
-// static int		no_conversion(char *s)
-// {
-// 	while (s && *s && *s != '%')
-// 	{
-// 		if (!is_conversion(*s))
-// 			return (0);
-// 		s++;
-// 	}
-// 	return (1);
-// }
+static int		no_conversion(char *s)
+{
+	while (s && *s && *s != '%')
+	{
+		if (!is_conversion(*s))
+			return (0);
+		s++;
+	}
+	return (1);
+}
 int		set_conversion(char *s, t_specif *spec)
 {
-	// if (no_conversion(*s))
-	// {
-	// 	spec->conversion = 0;
-	// 	return (0);
-	// }
+	if (no_conversion(*s))
+	{
+		spec->conversion = 0;
+		return (0);
+	}
 	spec->conversion = *s;
 	return (1);
 }
