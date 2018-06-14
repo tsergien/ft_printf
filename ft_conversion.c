@@ -14,9 +14,9 @@
 
 static int		no_conversion(char *s)
 {
-	while (s && *s && *s != '%')
+	while (s && *s)
 	{
-		if (!is_conversion(*s))
+		if (is_conversion(*s))
 			return (0);
 		s++;
 	}
@@ -24,7 +24,7 @@ static int		no_conversion(char *s)
 }
 int		set_conversion(char *s, t_specif *spec)
 {
-	if (no_conversion(*s))
+	if (no_conversion(s))
 	{
 		spec->conversion = 0;
 		return (0);
@@ -37,6 +37,14 @@ int		is_long_conv(char c)
 {
 	if (c == 'U' || c == 'S' || c == 'D'
 		|| c == 'C' || c == 'O' || c == 'p')
+		return (1);
+	return (0);
+}
+
+int		is_decimal(char c)
+{
+	if (c == 'U' || c == 'D' || c == 'u'
+		 || c == 'd' || c == 'i')
 		return (1);
 	return (0);
 }

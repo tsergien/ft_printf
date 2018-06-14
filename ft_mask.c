@@ -92,8 +92,11 @@ int			wchar_len(wchar_t *s)
 	return (len);
 }
 
-void		add_spaces(t_buf *buf, int n)
+void		add_spaces(t_buf *buf, int is_zero, int n)
 {
+	char	pad;
+
+	pad = is_zero ? '0' : ' ';
 	while (n-- > 0)
-		set_to_buf(buf, " ", 1);
+		set_to_buf(buf, &pad, 1);
 }

@@ -46,6 +46,7 @@ int					is_conversion(char c);
 int					is_long_conv(char c);
 int					is_flag(char c);
 int					is_valid(char *str);
+int					is_decimal(char c);
 
 /*
 ***********************BUF WORK****************
@@ -108,6 +109,7 @@ void				add_pads_uint(t_buf *buf, t_specif *spec,
 					int len, unsigned int val);
 void				add_pads_int(t_buf *buf, t_specif *spec,
 					int len, intmax_t val);
+void				add_pads_no_conv(t_buf *buf, t_specif *spec);
 void				add_hash(t_buf *buf, t_specif *spec);
 
 /*
@@ -118,6 +120,6 @@ void				add_sign(t_buf *buf, t_specif *spec, long int val);
 int					get_base(const char c);
 void				print_uni(intmax_t val, t_buf *buf);
 int					wchar_len(wchar_t *s);
-void				add_spaces(t_buf *buf, int n);
+void				add_spaces(t_buf *buf, int is_zero, int n);
 
 #endif

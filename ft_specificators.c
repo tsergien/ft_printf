@@ -12,19 +12,15 @@
 
 #include "includes/ft_printf.h"
 
-int		printf_no_conv(t_buf *buf, va_list *ap)
+static int		printf_no_conv(t_buf *buf, t_specif *spec)
 {
-	//put flags without value
-	if (is_minus(spec->flags))
+	if (is_minus(spec->flags))//
 	{
-		add_pads();
-		add_sign();
-		add_precision();
-
+		add_pads_no_conv(buf, spec);
 	}
 	else
 	{
-
+		add_pads_no_conv(buf, spec);	
 	}
 	return (1);
 }
@@ -32,7 +28,7 @@ int		printf_no_conv(t_buf *buf, va_list *ap)
 int		print_specificator(t_buf *buf, va_list *ap, t_specif *spec)
 {
 	if (spec->conversion == 0)
-		return (print_no_conv(buf, spec));
+		return (printf_no_conv(buf, spec));
 	if (spec->conversion == 'x' || spec->conversion == 'X'
 		|| spec->conversion == 'o' || spec->conversion == 'O'
 		|| spec->conversion == 'u' || spec->conversion == 'U'

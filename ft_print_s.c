@@ -35,10 +35,10 @@ static int		long_c(t_buf *buf, va_list *ap, t_specif *spec)
 	else
 		len = 4;
 	if (!is_minus(spec->flags))
-		add_spaces(buf, spec->width - len);
+		add_spaces(buf, is_zero(spec->flags), spec->width - len);
 	print_uni((int)symb, buf);
 	if (is_minus(spec->flags))
-		add_spaces(buf, spec->width - len);
+		add_spaces(buf, is_zero(spec->flags), spec->width - len);
 	return (1);
 }
 
@@ -52,7 +52,7 @@ static int		print_char(t_buf *buf, va_list *ap, t_specif *spec)
 	else
 		char_symbol = (char)va_arg(*ap, int);
 	if (!is_minus(spec->flags))
-		add_spaces(buf, spec->width - 1);
+		add_spaces(buf, is_zero(spec->flags), spec->width - 1);
 	set_to_buf(buf, &char_symbol, 1);
 	if (char_symbol == 0)
 	{
@@ -61,7 +61,7 @@ static int		print_char(t_buf *buf, va_list *ap, t_specif *spec)
 		buf->printed += 1;
 	}
 	if (is_minus(spec->flags))
-		add_spaces(buf, spec->width - 1);
+		add_spaces(buf, is_zero(spec->flags), spec->width - 1);
 	return (1);
 }
 
@@ -78,14 +78,14 @@ static int		long_s(t_buf *buf, va_list *ap, t_specif *spec)
 	else
 		len = wchar_len(s);
 	if (!is_minus(spec->flags))
-		add_spaces(buf, spec->width - len);
+		add_spaces(buf, is_zero(spec->flags), spec->width - len);
 	while (s && *s)
 	{
 		print_uni((int)*s, buf);
 		s++;
 	}
 	if (is_minus(spec->flags))
-		add_spaces(buf, spec->width - len);
+		add_spaces(buf, is_zero(spec->flags), spec->width - len);
 	return (1);
 }
 
@@ -101,10 +101,10 @@ static int		default_s(t_buf *buf, va_list *ap, t_specif *spec)
 		spec->precision = len;
 	min = FT_MIN(len, spec->precision);
 	if (!is_minus(spec->flags))
-		add_spaces(buf, spec->width - min);
+		add_spaces(buf, is_zero(spec->flags), spec->width - min);
 	set_to_buf(buf, va_arg(*ap, char *), min);
 	if (is_minus(spec->flags))
-		add_spaces(buf, spec->width - min);
+		add_spaces(buf, is_zero(spec->flags), spec->width - min);
 	return (1);
 }
 
