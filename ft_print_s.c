@@ -34,6 +34,12 @@ static int		long_c(t_buf *buf, va_list *ap, t_specif *spec)
 		len = 3;
 	else
 		len = 4;
+	if (symb == 0)
+	{
+		putbuf(buf, &symb);
+		write(1, "\0", 1);
+		buf->printed += 1;
+	}
 	if (!is_minus(spec->flags))
 		add_spaces(buf, is_zero(spec->flags), spec->width - len);
 	print_uni((int)symb, buf);

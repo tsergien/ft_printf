@@ -14,14 +14,7 @@
 
 static int		printf_no_conv(t_buf *buf, t_specif *spec)
 {
-	if (is_minus(spec->flags))//
-	{
-		add_pads_no_conv(buf, spec);
-	}
-	else
-	{
-		add_pads_no_conv(buf, spec);	
-	}
+	add_pads_no_conv(buf, spec);
 	return (1);
 }
 
