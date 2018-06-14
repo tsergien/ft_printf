@@ -39,37 +39,49 @@ static int	is_size_mod(char c)
 	return (0);
 }
 
-static int	is_width_precision(char **s)
-{
-	if (**s == '*')
-		(*s)++;
-	else
-	{
-		while (ft_isdigit(**s))
-			(*s)++;
-	}
-	if (**s == '.')
-	{
-		(*s)++;
-		if (**s == '*')
-			(*s)++;
-		while (ft_isdigit(**s))
-			(*s)++;
-	}
-	return (1);
-}
 
-int			is_valid(char *s)
+int			is_right_char(char c)
 {
-	while (*s && is_flag(*s))
-		s++;
-	if (!is_width_precision(&s))
-		return (0);
-	if (is_size_mod(*s) && is_size_mod(*(s + 1)) && *s == *(s + 1))
-		s += 2;
-	if (is_size_mod(*s))
-		s++;
-	if (is_conversion(*s))
+	if (is_flag(c) || is_conversion(c) ||
+		is_size_mod(c) || ft_isdigit(c) ||
+		c == '.' || c == '*')
 		return (1);
 	return (0);
 }
+
+/*
+*int			is_valid(char *s)**
+**{**
+**	while (*s && is_flag(*s))**
+**		s++;**
+**	if (!is_width_precision(&s))**
+**		return (0);**
+**	if (is_size_mod(*s) && is_size_mod(*(s + 1)) && *s == *(s + 1))**
+**		s += 2;**
+**	if (is_size_mod(*s))**
+**		s++;**
+**	if (is_conversion(*s))**
+**		return (1);**
+**	return (0);**
+**}
+
+** static int	is_width_precision(char **s)**
+** {**
+** 	if (**s == '*')**
+** 		(*s)++;**
+** 	else**
+** 	{**
+** 		while (ft_isdigit(**s))**
+** 			(*s)++;**
+** 	}**
+** 	if (**s == '.')**
+** 	{**
+** 		(*s)++;**
+** 		if (**s == '*')**
+** 			(*s)++;**
+** 		while (ft_isdigit(**s))**
+** 			(*s)++;**
+** 	}**
+** 	return (1);**
+** }**
+*/

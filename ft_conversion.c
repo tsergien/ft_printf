@@ -14,8 +14,10 @@
 
 static int		no_conversion(char *s)
 {
-	while (s && *s)
+	while (*s)
 	{
+		if (!is_right_char(*s))
+			return (1);
 		if (is_conversion(*s))
 			return (0);
 		s++;
@@ -30,6 +32,9 @@ int		set_conversion(char *s, t_specif *spec)
 		return (0);
 	}
 	spec->conversion = *s;
+	if (is_zero(spec->flags) && spec->conversion != 'c'
+		&& spec->precision != 1 && spec->conversion != 's')
+			spec->flags ^= 1UL << 3;
 	return (1);
 }
 

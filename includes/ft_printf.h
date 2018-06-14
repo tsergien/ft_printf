@@ -47,6 +47,7 @@ int					is_long_conv(char c);
 int					is_flag(char c);
 int					is_valid(char *str);
 int					is_decimal(char c);
+int					is_right_char(char c);
 
 /*
 ***********************BUF WORK****************

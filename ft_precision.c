@@ -30,8 +30,6 @@ int			set_precision(char *s, t_specif *spec, va_list *ap)
 {
 	if (*s == '.')
 	{
-		if (is_zero(spec->flags))
-			spec->flags ^= 1UL << 3;
 		spec->precision = 0;
 		s++;
 		if (!ft_isdigit(*s))

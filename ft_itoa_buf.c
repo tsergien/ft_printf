@@ -60,6 +60,10 @@ void		ft_itoa_buf(t_buf *buf, unsigned long value,
 
 	if (is_short(spec->size_mod) && !is_long_conv(spec->conversion))
 		value = value % 65536;
+	if (spec->size_mod == 1 && (spec->conversion == 'u'
+		|| spec->conversion == 'o' || spec->conversion == 'x'
+		|| spec->conversion == 'X'))
+		value = value % 256;
 	c = spec->conversion;
 	len = ft_num_len(value, base);
 	if (c == 'x' || c == 'o' || c == 'O'

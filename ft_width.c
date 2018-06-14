@@ -78,15 +78,19 @@ void	add_pads_int(t_buf *buf, t_specif *spec, int pads_amount, long int val)
 void	add_pads_no_conv(t_buf *buf, t_specif *spec)
 {
 	char		pad;
+	int			amount_pads;
+	int			ind;
 
+	putbuf(buf, &ind);
+	amount_pads = spec->width - buf->printed;
 	if (is_zero(spec->flags) && !is_minus(spec->flags))
 		pad = '0';
 	else
 		pad = ' ';
 	if (is_plus(spec->flags) || is_space(spec->flags))
-		spec->width--;
-	if (spec->precision > (int)spec->width)
+		amount_pads--;
+	if (spec->precision > amount_pads)
 		return ;
-	while (spec->width-- > 0)
+	while (amount_pads-- > 0)
 		set_to_buf(buf, &pad, 1);
 }

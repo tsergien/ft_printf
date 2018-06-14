@@ -96,7 +96,7 @@ static int		uint_long(t_buf *buf, va_list *ap, t_specif *spec)
 
 int				printf_uint(t_buf *buf, va_list *ap, t_specif *spec)
 {
-	if (is_long_conv(spec->conversion)|| is_long(spec->size_mod))
+	if (is_long_conv(spec->conversion) || is_long(spec->size_mod))
 		uint_long(buf, ap, spec);
 	else if (is_short(spec->size_mod))
 		uint_short(buf, ap, spec);

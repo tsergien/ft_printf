@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "includes/ft_printf.h"
-#include <stdio.h>/////
 
 /*
 ** ' ' undefined  **
@@ -106,9 +105,11 @@ static int		default_s(t_buf *buf, va_list *ap, t_specif *spec)
 	if (spec->precision == -1)
 		spec->precision = len;
 	min = FT_MIN(len, spec->precision);
-	if (!is_minus(spec->flags))
+	if (!is_minus(spec->flags))// && spec->precision != 0)
 		add_spaces(buf, is_zero(spec->flags), spec->width - min);
-	set_to_buf(buf, va_arg(*ap, char *), min);
+	//va_copy(cp, *ap);
+	//if (!(spec->precision == 0 && va_arg(cp, char *) == 0))
+		set_to_buf(buf, va_arg(*ap, char *), min);
 	if (is_minus(spec->flags))
 		add_spaces(buf, is_zero(spec->flags), spec->width - min);
 	return (1);

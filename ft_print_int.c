@@ -71,10 +71,10 @@ int				printf_int(t_buf *buf, va_list *ap, t_specif *spec)
 {
 	int				res;
 
-	if (is_short(spec->size_mod))
-		res = print_short(buf, ap, spec);
-	else if (is_long(spec->size_mod) || is_long_conv(spec->conversion))
+	if (is_long(spec->size_mod) || is_long_conv(spec->conversion))
 		res = print_long(buf, ap, spec);
+	else if (is_short(spec->size_mod))
+		res = print_short(buf, ap, spec);
 	else
 		res = print_default(buf, ap, spec);
 	return (res);
