@@ -12,6 +12,14 @@
 
 #include "includes/ft_printf.h"
 
+static int		is_s_conv(char c)
+{
+	if (c == 'c' || c == 's'
+		|| c == '%' || c == 'S')
+		return (1);
+	return (0);
+}
+
 static int		no_conversion(char *s)
 {
 	while (*s)
@@ -32,8 +40,8 @@ int		set_conversion(char *s, t_specif *spec)
 		return (0);
 	}
 	spec->conversion = *s;
-	if (is_zero(spec->flags) && spec->conversion != 'c'
-		&& spec->precision != 1 && spec->conversion != 's')
+	if (is_zero(spec->flags) && spec->precision != 1
+		&& !is_s_conv(spec->conversion))
 			spec->flags ^= 1UL << 3;
 	return (1);
 }

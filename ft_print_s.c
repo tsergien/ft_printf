@@ -74,23 +74,29 @@ static int		long_s(t_buf *buf, va_list *ap, t_specif *spec)
 {
 	int			len;
 	wchar_t		*s;
+	int			min;
 
-	if (spec->precision == 0)
+	len = 0;
+	if (spec->precision == 0 && spec->width == 0)
 		return (1);
 	s = va_arg(*ap, wchar_t *);
 	if (!s)
 		set_to_buf(buf, NULL, 1);
 	else
 		len = wchar_len(s);
+	if (spec->precision != -1)
+		spec->precision = len;
+	min = FT_MIN(len, spec->precision);
+	len = min;
 	if (!is_minus(spec->flags))
-		add_spaces(buf, is_zero(spec->flags), spec->width - len);
-	while (s && *s)
+		add_spaces(buf, is_zero(spec->flags), spec->width - min);
+	while (s && *s && len-- > 0)
 	{
 		print_uni((int)*s, buf);
 		s++;
 	}
 	if (is_minus(spec->flags))
-		add_spaces(buf, is_zero(spec->flags), spec->width - len);
+		add_spaces(buf, is_zero(spec->flags), spec->width - min);
 	return (1);
 }
 
@@ -102,13 +108,15 @@ static int		default_s(t_buf *buf, va_list *ap, t_specif *spec)
 
 	va_copy(cp, *ap);
 	len = ft_strlen(va_arg(cp, char *));
+	va_copy(cp, *ap);
+	if (va_arg(cp, char *) == 0)
+		len = 6;
 	if (spec->precision == -1)
 		spec->precision = len;
 	min = FT_MIN(len, spec->precision);
-	if (!is_minus(spec->flags))// && spec->precision != 0)
+	if (!is_minus(spec->flags))
 		add_spaces(buf, is_zero(spec->flags), spec->width - min);
-	//va_copy(cp, *ap);
-	//if (!(spec->precision == 0 && va_arg(cp, char *) == 0))
+	if (!(spec->width > 0 && spec->precision == 0))
 		set_to_buf(buf, va_arg(*ap, char *), min);
 	if (is_minus(spec->flags))
 		add_spaces(buf, is_zero(spec->flags), spec->width - min);

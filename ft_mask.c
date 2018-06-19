@@ -62,6 +62,9 @@ void		print_uni(intmax_t val, t_buf *buf)
 	int		mask[4];
 
 	i = -1;
+	while (++i < 4)
+		mask[i] = 0;
+	i = -1;
 	get_mask(val, mask);
 	while (mask[++i] != 0 && i < 4)
 	{
