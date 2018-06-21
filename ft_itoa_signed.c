@@ -12,6 +12,28 @@
 
 #include "includes/ft_printf.h"
 
+int			wchar_len(wchar_t *s)
+{
+	int		len;
+	int		len_of_byte;
+	char	*byte;
+
+	len = 0;
+	while (*s)
+	{
+		len_of_byte = 0;
+		byte = (char *)s;
+		while (*byte)
+		{
+			len_of_byte++;
+			byte++;
+		}
+		len += len_of_byte;
+		s++;
+	}
+	return (len);
+}
+
 int			num_len_signed(intmax_t n, int base)
 {
 	int		l;

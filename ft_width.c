@@ -22,7 +22,7 @@ int		set_width(char *s, t_specif *spec, va_list *ap)
 	if (*s == '*')
 	{
 		spec->width = va_arg(*ap, int);
-		return (1);
+		return (num_len_signed(spec->width, 10));
 	}
 	if (ft_isdigit(*s))
 	{
@@ -83,6 +83,8 @@ void	add_pads_no_conv(t_buf *buf, t_specif *spec)
 
 	putbuf(buf, &ind);
 	amount_pads = spec->width - buf->printed;
+	if (is_minus(spec->flags))
+		amount_pads = spec->width - 1;
 	if (is_zero(spec->flags) && !is_minus(spec->flags))
 		pad = '0';
 	else

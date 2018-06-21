@@ -12,16 +12,8 @@
 
 #include "includes/ft_printf.h"
 
-static int		printf_no_conv(t_buf *buf, t_specif *spec)
-{
-	add_pads_no_conv(buf, spec);
-	return (1);
-}
-
 int		print_specificator(t_buf *buf, va_list *ap, t_specif *spec)
 {
-	if (spec->conversion == 0)
-		return (printf_no_conv(buf, spec));
 	if (spec->conversion == 'x' || spec->conversion == 'X'
 		|| spec->conversion == 'o' || spec->conversion == 'O'
 		|| spec->conversion == 'u' || spec->conversion == 'U'

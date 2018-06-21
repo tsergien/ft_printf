@@ -26,6 +26,18 @@
 ***  0x3F = 10xx xxxx   ****
 */
 
+int			uni_size(int c)
+{
+	if (c <= 0x7F)
+		return (1);
+	else if (c <= 0x7FF)
+		return (2);
+	else if (c <= 0xFFFF)
+		return (3);
+	else
+		return (4);
+}
+
 static void	get_mask(intmax_t val, int *mask)
 {
 	if (val <= 0x7F)
@@ -73,26 +85,16 @@ void		print_uni(intmax_t val, t_buf *buf)
 	}
 }
 
-int			wchar_len(wchar_t *s)
+void		print_uni_s(t_buf *buf, wchar_t *s, int precision, int len)
 {
-	int		len;
-	int		len_of_byte;
-	char	*byte;
-
-	len = 0;
-	while (*s)
+	while (s && *s)
 	{
-		len_of_byte = 0;
-		byte = (char *)s;
-		while (*byte)
-		{
-			len_of_byte++;
-			byte++;
-		}
-		len += len_of_byte;
+		len -= uni_size((int)*s);
+		if (precision != -1 && len <= -1)
+			break ;
+		print_uni((int)*s, buf);
 		s++;
 	}
-	return (len);
 }
 
 void		add_spaces(t_buf *buf, int is_zero, int n)

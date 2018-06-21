@@ -21,6 +21,8 @@ static int	default_precision(char *s)
 {
 	while (*s && ft_isdigit(*s))
 		s++;
+	while (is_size_mod(*s))
+		s++;
 	if (*s == 's' || *s == 'S')
 		return (-1);
 	return (1);
@@ -28,17 +30,22 @@ static int	default_precision(char *s)
 
 int			set_precision(char *s, t_specif *spec, va_list *ap)
 {
+	if (*s == '*')
+	{
+		spec->precision = va_arg(*ap, int);
+		return (1);
+	}
 	if (*s == '.')
 	{
 		spec->precision = 0;
 		s++;
-		if (!ft_isdigit(*s))
-			return (1);
 		if (*s == '*')
 		{
 			spec->precision = va_arg(*ap, int);
 			return (2);
 		}
+		if (!ft_isdigit(*s))
+			return (1);
 		spec->precision = ft_atoi(s);
 		return (ft_num_len(spec->precision, 10) + 1);
 	}

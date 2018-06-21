@@ -24,7 +24,7 @@
 typedef struct		s_specif
 {
 	char			flags;
-	size_t			width;
+	int				width;
 	int				precision;
 	char			conversion;
 	short int		size_mod;
@@ -48,6 +48,7 @@ int					is_flag(char c);
 int					is_valid(char *str);
 int					is_decimal(char c);
 int					is_right_char(char c);
+int					is_size_mod(char c);
 
 /*
 ***********************BUF WORK****************
@@ -56,7 +57,6 @@ int					is_right_char(char c);
 void				putbuf(t_buf *buf, int *index);
 void				set_to_buf(t_buf *buf, char const *src, int n);
 int					write_value_to_buf(t_buf *buf, va_list *ap, char *s);
-int					init(char *s, t_specif *spec, va_list *ap);
 
 /*
 ***********************FLAGS...*************
@@ -120,6 +120,8 @@ void				add_hash(t_buf *buf, t_specif *spec);
 void				add_sign(t_buf *buf, t_specif *spec, long int val);
 int					get_base(const char c);
 void				print_uni(intmax_t val, t_buf *buf);
+int					uni_size(int c);
+void				print_uni_s(t_buf *buf, wchar_t *s, int precision, int len);
 int					wchar_len(wchar_t *s);
 void				add_spaces(t_buf *buf, int is_zero, int n);
 

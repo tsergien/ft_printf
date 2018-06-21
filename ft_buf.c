@@ -12,7 +12,7 @@
 
 #include "includes/ft_printf.h"
 
-void	putbuf(t_buf *buf, int *index)
+void		putbuf(t_buf *buf, int *index)
 {
 	*index = 0;
 	buf->printed += ft_strlen(buf->buf);
@@ -20,7 +20,7 @@ void	putbuf(t_buf *buf, int *index)
 	ft_bzero(buf->buf, BUFF_SIZE);
 }
 
-void	set_to_buf(t_buf *buf, char const *src, int n)
+void		set_to_buf(t_buf *buf, char const *src, int n)
 {
 	int		j;
 
@@ -45,7 +45,7 @@ void	set_to_buf(t_buf *buf, char const *src, int n)
 	}
 }
 
-int		init(char *s, t_specif *spec, va_list *ap)
+static int	init(char *s, t_specif *spec, va_list *ap)
 {
 	char	*start_s;
 
@@ -58,16 +58,33 @@ int		init(char *s, t_specif *spec, va_list *ap)
 	return (s - start_s);
 }
 
+static void	printf_no_conv(t_buf *buf, t_specif *spec, char *s)
+{
+	if (!is_minus(spec->flags))
+		add_pads_no_conv(buf, spec);
+	else
+	{
+		set_to_buf(buf, s, 1);
+		add_pads_no_conv(buf, spec);
+	}
+}
+
 /*
 ** return amoount of symbols after %   **
 */
 
-int		write_value_to_buf(t_buf *buf, va_list *ap, char *s)
+int			write_value_to_buf(t_buf *buf, va_list *ap, char *s)
 {
 	int			symb;
 	t_specif	spec;
 
 	symb = init(s, &spec, ap);
+	s = s + symb;
+	if (spec.conversion == 0)
+	{
+		printf_no_conv(buf, &spec, s);
+		symb += is_minus(spec.flags);
+	}
 	if (print_specificator(buf, ap, &spec) == -1)
 		return (-1);
 	return (symb);

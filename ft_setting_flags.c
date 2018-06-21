@@ -12,7 +12,7 @@
 
 #include "includes/ft_printf.h"
 
-void			add_hash(t_buf *buf, t_specif *spec)
+void	add_hash(t_buf *buf, t_specif *spec)
 {
 	if (is_hash(spec->flags) && spec->conversion == 'X'
 		&& spec->precision != 0)
@@ -43,7 +43,7 @@ void	put_flags_minus_int(t_buf *buf, t_specif *spec,
 {
 	add_sign(buf, spec, val);
 	add_precision_int(buf, spec, val);
-	if (val == 0 && spec->precision == 0 && (int)spec->width < len)
+	if (val == 0 && spec->precision == 0 && spec->width < len)
 		return ;
 	ft_itoa_signed(buf, val);
 	add_pads_int(buf, spec, spec->width - len, val);
@@ -76,7 +76,7 @@ void	put_flags_minus_uint(t_buf *buf, t_specif *spec,
 	if (val != 0 || spec->conversion == 'p')
 		add_hash(buf, spec);
 	add_precision_uint(buf, spec, val);
-	if (val == 0 && spec->precision == 0 && (int)spec->width < len)
+	if (val == 0 && spec->precision == 0 && spec->width < len)
 		return ;
 	ft_itoa_buf(buf, val, base, spec);
 	add_pads_uint(buf, spec, spec->width - len, val);

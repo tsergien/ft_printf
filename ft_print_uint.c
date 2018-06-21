@@ -29,7 +29,7 @@ static int		uint_short(t_buf *buf, va_list *ap, t_specif *spec)
 {
 	int				len;
 	short int		base;
-	unsigned short 	val;
+	unsigned short	val;
 
 	val = (unsigned short)va_arg(*ap, unsigned int);
 	base = get_base(spec->conversion);
@@ -52,7 +52,7 @@ static int		uint_default(t_buf *buf, va_list *ap, t_specif *spec)
 {
 	int				len;
 	short int		base;
-	unsigned int 	val;
+	unsigned int	val;
 
 	val = va_arg(*ap, unsigned int);
 	base = get_base(spec->conversion);

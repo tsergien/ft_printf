@@ -12,7 +12,7 @@
 
 #include "includes/ft_printf.h"
 
-static int		is_s_conv(char c)
+static int	is_s_conv(char c)
 {
 	if (c == 'c' || c == 's'
 		|| c == '%' || c == 'S')
@@ -20,7 +20,7 @@ static int		is_s_conv(char c)
 	return (0);
 }
 
-static int		no_conversion(char *s)
+static int	no_conversion(char *s)
 {
 	while (*s)
 	{
@@ -32,7 +32,8 @@ static int		no_conversion(char *s)
 	}
 	return (1);
 }
-int		set_conversion(char *s, t_specif *spec)
+
+int			set_conversion(char *s, t_specif *spec)
 {
 	if (no_conversion(s))
 	{
@@ -42,11 +43,11 @@ int		set_conversion(char *s, t_specif *spec)
 	spec->conversion = *s;
 	if (is_zero(spec->flags) && spec->precision != 1
 		&& !is_s_conv(spec->conversion))
-			spec->flags ^= 1UL << 3;
+		spec->flags ^= 1UL << 3;
 	return (1);
 }
 
-int		is_long_conv(char c)
+int			is_long_conv(char c)
 {
 	if (c == 'U' || c == 'S' || c == 'D'
 		|| c == 'C' || c == 'O' || c == 'p')
@@ -54,11 +55,10 @@ int		is_long_conv(char c)
 	return (0);
 }
 
-int		is_decimal(char c)
+int			is_decimal(char c)
 {
 	if (c == 'U' || c == 'D' || c == 'u'
-		 || c == 'd' || c == 'i')
+		|| c == 'd' || c == 'i')
 		return (1);
 	return (0);
 }
-

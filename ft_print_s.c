@@ -84,19 +84,16 @@ static int		long_s(t_buf *buf, va_list *ap, t_specif *spec)
 		set_to_buf(buf, NULL, 1);
 	else
 		len = wchar_len(s);
-	if (spec->precision != -1)
-		spec->precision = len;
-	min = FT_MIN(len, spec->precision);
+	if (spec->precision == -1)
+		min = len;
+	else
+		min = FT_MIN(len, spec->precision);
 	len = min;
 	if (!is_minus(spec->flags))
-		add_spaces(buf, is_zero(spec->flags), spec->width - min);
-	while (s && *s && len-- > 0)
-	{
-		print_uni((int)*s, buf);
-		s++;
-	}
+		add_spaces(buf, is_zero(spec->flags), spec->width - len);
+	print_uni_s(buf, s, spec->precision, min);
 	if (is_minus(spec->flags))
-		add_spaces(buf, is_zero(spec->flags), spec->width - min);
+		add_spaces(buf, is_zero(spec->flags), spec->width - len);
 	return (1);
 }
 
@@ -125,13 +122,13 @@ static int		default_s(t_buf *buf, va_list *ap, t_specif *spec)
 
 int				printf_s(t_buf *buf, va_list *ap, t_specif *spec)
 {
-	if (spec->conversion == 'c' || spec->conversion == '%')
-		return (print_char(buf, ap, spec));
-	if ((is_long(spec->size_mod) && spec->conversion == 's')
-		|| spec->conversion == 'S')
-		return (long_s(buf, ap, spec));
 	if ((is_long(spec->size_mod) && spec->conversion == 'c')
 		|| spec->conversion == 'C')
 		return (long_c(buf, ap, spec));
+	if ((is_long(spec->size_mod) && spec->conversion == 's')
+		|| spec->conversion == 'S')
+		return (long_s(buf, ap, spec));
+	if (spec->conversion == 'c' || spec->conversion == '%')
+		return (print_char(buf, ap, spec));
 	return (default_s(buf, ap, spec));
 }
